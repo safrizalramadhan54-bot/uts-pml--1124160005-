@@ -45,7 +45,36 @@ class ProfilPage extends StatelessWidget {
               const Text(
                 'Teknik Informatika (1124160005)',
                 style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),
-              ),              
+              ),     
+              const SizedBox(height: 16),
+              const Card(
+                child: ListTile(
+                  leading: Icon(Icons.email,color: Colors.blue),
+                  title: Text('email'),
+                  subtitle: Text('ical@gmail.com'),
+                ),
+              ),  
+               const Card(
+                child: ListTile(
+                  leading: Icon(Icons.phone,color: Colors.blue),
+                  title: Text('phone'),
+                  subtitle: Text('089626077624'),
+                ),
+              ),  
+               const Card(
+                child: ListTile(
+                  leading: Icon(Icons.location_on,color: Colors.blue),
+                  title: Text('lokasi'),
+                  subtitle: Text('Tangerang'),
+                ),
+              ),  
+               const Card(
+                child: ListTile(
+                  leading: Icon(Icons.school,color: Colors.blue),
+                  title: Text('kampus'),
+                  subtitle: Text('Global Insitute'),
+                ),
+              ),  
             ],
           ),
         ),
