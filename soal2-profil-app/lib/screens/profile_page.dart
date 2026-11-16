@@ -5,11 +5,15 @@ import '../widgets/info_tile.dart';
 import 'edit_profile_page.dart';
 
 class ProfilePage extends StatefulWidget {
+  final Profile profile;
+  final ValueChanged<Profile> onProfileChanged;
   final bool isDark;
   final ValueChanged<bool> onThemeChanged;
 
   const ProfilePage({
     super.key,
+    required this.profile,
+    required this.onProfileChanged,
     required this.isDark,
     required this.onThemeChanged,
   });
@@ -19,7 +23,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Profile _profile = Profile.awal;
+  late Profile _profile;
+
+  @override
+  void initState() {
+    super.initState();
+    _profile = widget.profile; // ambil data terakhir yang tersimpan
+  }
 
   Future<void> _editProfile() async {
     final hasil = await Navigator.push<Profile>(
@@ -31,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     if (hasil != null) {
       setState(() => _profile = hasil);
+      widget.onProfileChanged(hasil); // simpan ke MyApp biar tidak hilang
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Profil berhasil diperbarui')),
@@ -170,7 +181,7 @@ class _ProfilePageState extends State<ProfilePage> {
             title: 'GitHub',
             value: _profile.github,
           ),
-          const SizedBox(height: 80), 
+          const SizedBox(height: 80), // ruang untuk FAB
         ],
       ),
     );
